@@ -1,3 +1,3 @@
 hello git
 
-fix-B /*test*/
+fixB /*test*/
