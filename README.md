@@ -1,4 +1,5 @@
 hello git
 
-add new line
+
+fixB /*test*/
 
