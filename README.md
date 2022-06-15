@@ -5,3 +5,5 @@ fixB /*test*/
 
 feature-C
 
+add master
+
