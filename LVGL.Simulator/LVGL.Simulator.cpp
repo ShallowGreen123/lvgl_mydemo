@@ -13,19 +13,19 @@
 #include "resource.h"
 
 #if _MSC_VER >= 1200
- // Disable compilation warnings.
+// Disable compilation warnings.
 #pragma warning(push)
 // nonstandard extension used : bit field types other than int
-#pragma warning(disable:4214)
+#pragma warning(disable : 4214)
 // 'conversion' conversion from 'type1' to 'type2', possible loss of data
-#pragma warning(disable:4244)
+#pragma warning(disable : 4244)
 #endif
 
 #include "lvgl/lvgl.h"
 #include "lvgl/examples/lv_examples.h"
 #include "lvgl/demos/lv_demos.h"
 #include "lv_drivers/win32drv/win32drv.h"
-#include "lvgl_mydemo/demo_init.h"
+#include "lvgl_mydemo/lvgl_app.h"
 
 #if _MSC_VER >= 1200
 // Restore compilation warnings.
@@ -34,17 +34,15 @@
 
 #include <stdio.h>
 
-int main()
-{
+int main() {
     lv_init();
 
     if (!lv_win32_init(
-        GetModuleHandleW(NULL),
-        SW_SHOW,
-        800,
-        480,
-        LoadIconW(GetModuleHandleW(NULL), MAKEINTRESOURCE(IDI_LVGL))))
-    {
+            GetModuleHandleW(NULL),
+            SW_SHOW,
+            800,
+            480,
+            LoadIconW(GetModuleHandleW(NULL), MAKEINTRESOURCE(IDI_LVGL)))) {
         return -1;
     }
 
@@ -63,24 +61,24 @@ int main()
 
     ///*Init freetype library
     // *Cache max 64 faces and 1 size*/
-    //lv_freetype_init(64, 1, 0);
+    // lv_freetype_init(64, 1, 0);
 
     ///*Create a font*/
-    //static lv_ft_info_t info;
-    //info.name = "./lvgl/src/extra/libs/freetype/arial.ttf";
-    //info.weight = 36;
-    //info.style = FT_FONT_STYLE_NORMAL;
-    //lv_ft_font_init(&info);
+    // static lv_ft_info_t info;
+    // info.name = "./lvgl/src/extra/libs/freetype/arial.ttf";
+    // info.weight = 36;
+    // info.style = FT_FONT_STYLE_NORMAL;
+    // lv_ft_font_init(&info);
 
     ///*Create style with the new font*/
-    //static lv_style_t style;
-    //lv_style_init(&style);
-    //lv_style_set_text_font(&style, info.font);
+    // static lv_style_t style;
+    // lv_style_init(&style);
+    // lv_style_set_text_font(&style, info.font);
 
     ///*Create a label with the new style*/
-    //lv_obj_t* label = lv_label_create(lv_scr_act());
-    //lv_obj_add_style(label, &style, 0);
-    //lv_label_set_text(label, "FreeType Arial Test");
+    // lv_obj_t* label = lv_label_create(lv_scr_act());
+    // lv_obj_add_style(label, &style, 0);
+    // lv_label_set_text(label, "FreeType Arial Test");
 
     // ----------------------------------
     // my Win32 filesystem driver application
@@ -105,13 +103,13 @@ int main()
     // Demos from lv_examples
     // ----------------------------------
 
-    //demo_init();
-     lv_demo_widgets();           // ok
-    // lv_demo_benchmark();
-    // lv_demo_keypad_encoder();    // ok
-    // lv_demo_music();             // removed from repository
-    // lv_demo_printer();           // removed from repository
-    // lv_demo_stress();            // ok
+    lvgl_app_init();
+    // lv_demo_widgets();           // ok
+    //  lv_demo_benchmark();
+    //  lv_demo_keypad_encoder();    // ok
+    //  lv_demo_music();             // removed from repository
+    //  lv_demo_printer();           // removed from repository
+    //  lv_demo_stress();            // ok
 
     // ----------------------------------
     // LVGL examples
@@ -259,8 +257,7 @@ int main()
     // Task handler loop
     // ----------------------------------
 
-    while (!lv_win32_quit_signal)
-    {
+    while (!lv_win32_quit_signal) {
         lv_task_handler();
         Sleep(1);
     }

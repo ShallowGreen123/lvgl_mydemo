@@ -5,8 +5,11 @@
   <ItemGroup>
     <ClInclude Include="lv_conf.h" />
     <ClInclude Include="lv_drv_conf.h" />
-    <ClInclude Include="lvgl_mydemo\demo_init.h">
-      <Filter>lvgl_mydemo</Filter>
+    <ClInclude Include="lvgl_mydemo\data\dataModel.h">
+      <Filter>lvgl_mydemo\data</Filter>
+    </ClInclude>
+    <ClInclude Include="lvgl_mydemo\data\scr_mgr.h">
+      <Filter>lvgl_mydemo\data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -18,8 +21,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LVGL.Simulator.cpp" />
-    <ClCompile Include="lvgl_mydemo\demo_init.c">
+    <ClCompile Include="lvgl_mydemo\lvgl_app.c">
       <Filter>lvgl_mydemo</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\data\dataModel.c">
+      <Filter>lvgl_mydemo\data</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\data\scr_mgr.c">
+      <Filter>lvgl_mydemo\data</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -34,6 +43,24 @@
   <ItemGroup>
     <Filter Include="lvgl_mydemo">
       <UniqueIdentifier>{8c2243de-0fed-467c-aebe-9ceb4d4cae3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lvgl_mydemo\assert">
+      <UniqueIdentifier>{253c6444-7e69-4837-a228-93424f9d3129}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lvgl_mydemo\data">
+      <UniqueIdentifier>{ff621371-a878-40b4-91ab-cd7be0dc2d4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lvgl_mydemo\srceen">
+      <UniqueIdentifier>{c5934b62-3853-4f42-9324-6ffd65bd3527}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lvgl_mydemo\widgets">
+      <UniqueIdentifier>{f2c004d7-0d9c-41e8-abc9-72caf2c7be27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lvgl_mydemo\assert\font">
+      <UniqueIdentifier>{7097f629-8b0d-4ec3-93c8-d8860a89b3e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lvgl_mydemo\assert\image">
+      <UniqueIdentifier>{5aec906d-b671-4778-9999-6dcadc840600}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

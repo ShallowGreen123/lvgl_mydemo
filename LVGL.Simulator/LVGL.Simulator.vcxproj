@@ -25,12 +25,17 @@
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <Optimization Condition="'$(Configuration)'=='Release'">MinSpace</Optimization>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdcpplatest</LanguageStandard>
+      <LanguageStandard_C Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdc17</LanguageStandard_C>
+      <LanguageStandard_C Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdc11</LanguageStandard_C>
+      <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdcpplatest</LanguageStandard>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="LVGL.Portable.vcxitems" />
   <Import Project="LVGL.Drivers.vcxitems" />
   <ItemGroup>
-    <ClInclude Include="lvgl_mydemo\demo_init.h" />
+    <ClInclude Include="lvgl_mydemo\data\dataModel.h" />
+    <ClInclude Include="lvgl_mydemo\data\scr_mgr.h" />
     <ClInclude Include="lv_conf.h" />
   </ItemGroup>
   <ItemGroup>
@@ -45,7 +50,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LVGL.Simulator.cpp" />
-    <ClCompile Include="lvgl_mydemo\demo_init.c" />
+    <ClCompile Include="lvgl_mydemo\data\dataModel.c" />
+    <ClCompile Include="lvgl_mydemo\data\scr_mgr.c" />
+    <ClCompile Include="lvgl_mydemo\lvgl_app.c" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LVGL.Simulator.rc" />
