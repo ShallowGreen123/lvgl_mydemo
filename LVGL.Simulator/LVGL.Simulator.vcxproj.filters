@@ -11,6 +11,15 @@
     <ClInclude Include="lvgl_mydemo\data\scr_mgr.h">
       <Filter>lvgl_mydemo\data</Filter>
     </ClInclude>
+    <ClInclude Include="lvgl_mydemo\screen\gui_scr_mgr.h">
+      <Filter>lvgl_mydemo\srceen</Filter>
+    </ClInclude>
+    <ClInclude Include="lvgl_mydemo\screen\gui_main_scr.h">
+      <Filter>lvgl_mydemo\srceen</Filter>
+    </ClInclude>
+    <ClInclude Include="lvgl_mydemo\screen\gui_test1_scr.h">
+      <Filter>lvgl_mydemo\srceen</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="LVGL.Simulator.manifest" />
@@ -29,6 +38,15 @@
     </ClCompile>
     <ClCompile Include="lvgl_mydemo\data\scr_mgr.c">
       <Filter>lvgl_mydemo\data</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\screen\gui_main_scr.c">
+      <Filter>lvgl_mydemo\srceen</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\screen\gui_scr_mgr.c">
+      <Filter>lvgl_mydemo\srceen</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\screen\gui_test1_scr.c">
+      <Filter>lvgl_mydemo\srceen</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

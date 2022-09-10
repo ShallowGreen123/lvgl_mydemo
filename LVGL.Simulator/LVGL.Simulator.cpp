@@ -1,4 +1,13 @@
-﻿/*
+﻿/************************************************************************
+ * FilePath     : LVGL.Simulator.cpp
+ * Author       : GX.Duan
+ * Date         : 2022-08-07 15:20:34
+ * LastEditTime : 2022-09-10 16:05:20
+ * LastEditors  : ShallowGreen123 2608653986@qq.com
+ * Copyright (c): 2022 by GX.Duan, All Rights Reserved.
+ * Github       : https://github.com/ShallowGreen123/lvgl_mydemo
+ ************************************************************************/
+/*
  * PROJECT:   LVGL PC Simulator using Visual Studio
  * FILE:      LVGL.Simulator.cpp
  * PURPOSE:   Implementation for LVGL ported to Windows Desktop
@@ -40,7 +49,7 @@ int main() {
     if (!lv_win32_init(
             GetModuleHandleW(NULL),
             SW_SHOW,
-            800,
+            480,
             480,
             LoadIconW(GetModuleHandleW(NULL), MAKEINTRESOURCE(IDI_LVGL)))) {
         return -1;
