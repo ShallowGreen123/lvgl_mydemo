@@ -1,7 +1,10 @@
 {
     "files.associations": {
         "scr_mgr.h": "c",
-        "gui_main_scr.h": "c"
+        "gui_main_scr.h": "c",
+        "stdio.h": "c",
+        "gui_log.h": "c",
+        "lvgl.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

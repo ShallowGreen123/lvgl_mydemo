@@ -55,6 +55,8 @@
     <ClCompile Include="LVGL.Simulator.cpp" />
     <ClCompile Include="lvgl_mydemo\data\dataModel.c" />
     <ClCompile Include="lvgl_mydemo\data\scr_mgr.c" />
+    <ClCompile Include="lvgl_mydemo\log\drv_log.c" />
+    <ClCompile Include="lvgl_mydemo\log\gui_log.c" />
     <ClCompile Include="lvgl_mydemo\lvgl_app.c" />
     <ClCompile Include="lvgl_mydemo\screen\gui_main_scr.c" />
     <ClCompile Include="lvgl_mydemo\screen\gui_scr_mgr.c" />

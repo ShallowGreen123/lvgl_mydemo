@@ -48,6 +48,12 @@
     <ClCompile Include="lvgl_mydemo\screen\gui_test1_scr.c">
       <Filter>lvgl_mydemo\srceen</Filter>
     </ClCompile>
+    <ClCompile Include="lvgl_mydemo\log\gui_log.c">
+      <Filter>lvgl_mydemo\log</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\log\drv_log.c">
+      <Filter>lvgl_mydemo\log</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LVGL.Simulator.rc" />
@@ -79,6 +85,9 @@
     </Filter>
     <Filter Include="lvgl_mydemo\assert\image">
       <UniqueIdentifier>{5aec906d-b671-4778-9999-6dcadc840600}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lvgl_mydemo\log">
+      <UniqueIdentifier>{7c5bcdd0-7a51-46f7-804e-ed1f4371645d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

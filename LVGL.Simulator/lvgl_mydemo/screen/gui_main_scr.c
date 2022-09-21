@@ -2,6 +2,15 @@
  * FilePath     : gui_main_scr.c
  * Author       : GX.Duan
  * Date         : 2022-08-19 00:25:00
+ * LastEditTime : 2022-09-21 22:11:15
+ * LastEditors  : ShallowGreen123 2608653986@qq.com
+ * Copyright (c): 2022 by GX.Duan, All Rights Reserved.
+ * Github       : https://github.com/ShallowGreen123/lvgl_mydemo
+ ************************************************************************/
+/************************************************************************
+ * FilePath     : gui_main_scr.c
+ * Author       : GX.Duan
+ * Date         : 2022-08-19 00:25:00
  * LastEditTime : 2022-09-10 16:01:12
  * LastEditors  : ShallowGreen123 2608653986@qq.com
  * Copyright (c): 2022 by GX.Duan, All Rights Reserved.
@@ -38,7 +47,7 @@ void swithc_btn_event_cb(lv_event_t *e) {
     lv_obj_t *obj = lv_event_get_target(e);
 
     if (obj == switch_btn) {
-        printf("Screen 1 switch_btn is pressed!\n");
+        TRACE_I("Screen 1 switch_btn is pressed!");
         ScrMgrPushScr(GUI_TEST1_SCR_ID, true);
     }
 }

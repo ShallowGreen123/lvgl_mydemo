@@ -2,6 +2,15 @@
  * FilePath     : gui_test1_scr.c
  * Author       : GX.Duan
  * Date         : 2022-09-10 17:10:59
+ * LastEditTime : 2022-09-21 22:46:10
+ * LastEditors  : ShallowGreen123 2608653986@qq.com
+ * Copyright (c): 2022 by GX.Duan, All Rights Reserved.
+ * Github       : https://github.com/ShallowGreen123/lvgl_mydemo
+ ************************************************************************/
+/************************************************************************
+ * FilePath     : gui_test1_scr.c
+ * Author       : GX.Duan
+ * Date         : 2022-09-10 17:10:59
  * LastEditTime : 2022-09-10 17:13:08
  * LastEditors  : ShallowGreen123 2608653986@qq.com
  * Copyright (c): 2022 by GX.Duan, All Rights Reserved.
@@ -39,7 +48,7 @@ void test1_btn_event_cb(lv_event_t *e) {
     lv_obj_t *obj = lv_event_get_target(e);
 
     if (obj == test1_btn) {
-        printf("Screen 2 test1_btn is pressed!\n");
+        TRACE_I("Screen 2 test1_btn is pressed!");
         ScrMgrPopScr(true);
     }
 }
