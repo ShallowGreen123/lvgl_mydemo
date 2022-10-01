@@ -1,12 +1,13 @@
-﻿/************************************************************************
- * FilePath     : gui_scr_mgr.c
+/************************************************************************
+ * FilePath     : scr_mgr.c
  * Author       : GX.Duan
- * Date         : 2022-09-10 14:17:29
- * LastEditTime : 2022-09-10 15:43:26
+ * Date         : 2022-08-18 22:59:28
+ * LastEditTime : 2022-09-30 22:14:31
  * LastEditors  : ShallowGreen123 2608653986@qq.com
  * Copyright (c): 2022 by GX.Duan, All Rights Reserved.
  * Github       : https://github.com/ShallowGreen123/lvgl_mydemo
  ************************************************************************/
+
 #define __SCR_MGR_C__
 
 /*********************************************************************************
@@ -44,7 +45,8 @@ static const SCR_MGR_SCR_HANDLE_T    *ScrMgrScrHandles[] = {
  *                              STATIC FUNCTION
  *********************************************************************************/
 
-static SCR_MGR_SCR_HANDLE_T *ScrMgrFindScrById(uint32_t id) {
+static SCR_MGR_SCR_HANDLE_T *ScrMgrFindScrById(uint32_t id)
+{
     uint32_t i;
 
     for (i = 0; i < ScrMgrRegScrList->ScrCnt; i++) {
@@ -55,7 +57,8 @@ static SCR_MGR_SCR_HANDLE_T *ScrMgrFindScrById(uint32_t id) {
     return NULL;
 }
 
-static void ScrMgrStackScrActive(SCR_MGR_SCR_STACK_HANDLE_T *stack_item) {
+static void ScrMgrStackScrActive(SCR_MGR_SCR_STACK_HANDLE_T *stack_item)
+{
     if (stack_item->State == SCR_MGR_SCR_STATE_DESTROYED) {
         stack_item->ScrObj = stack_item->ScrHandle->ScrCreate(NULL);
         stack_item->ScrHandle->ScrEnter();
@@ -66,14 +69,16 @@ static void ScrMgrStackScrActive(SCR_MGR_SCR_STACK_HANDLE_T *stack_item) {
     }
 }
 
-static void ScrMgrStackScrInactive(SCR_MGR_SCR_STACK_HANDLE_T *stack_item) {
+static void ScrMgrStackScrInactive(SCR_MGR_SCR_STACK_HANDLE_T *stack_item)
+{
     if (stack_item->State > SCR_MGR_SCR_STATE_INACTIVE) {
         stack_item->ScrHandle->ScrExit();
         stack_item->State = SCR_MGR_SCR_STATE_INACTIVE;
     }
 }
 
-static void ScrMgrStackScrDestroy(SCR_MGR_SCR_STACK_HANDLE_T *stack_item) {
+static void ScrMgrStackScrDestroy(SCR_MGR_SCR_STACK_HANDLE_T *stack_item)
+{
     if (stack_item->State > SCR_MGR_SCR_STATE_INACTIVE) {
         stack_item->ScrHandle->ScrExit();
         stack_item->ScrHandle->ScrDestroy();
@@ -84,7 +89,8 @@ static void ScrMgrStackScrDestroy(SCR_MGR_SCR_STACK_HANDLE_T *stack_item) {
     }
 }
 
-static void ScrMgrStackScrRemove(SCR_MGR_SCR_STACK_HANDLE_T *stack_item) {
+static void ScrMgrStackScrRemove(SCR_MGR_SCR_STACK_HANDLE_T *stack_item)
+{
     if (stack_item->State > SCR_MGR_SCR_STATE_INACTIVE) {
         stack_item->ScrHandle->ScrExit();
         stack_item->ScrHandle->ScrDestroy();
@@ -99,7 +105,8 @@ static void ScrMgrStackScrRemove(SCR_MGR_SCR_STACK_HANDLE_T *stack_item) {
  *                              GLOBAL FUNCTION
  *********************************************************************************/
 
-void ScrMgrInit(void) {
+void ScrMgrInit(void)
+{
     uint32_t cnt = sizeof(ScrMgrScrHandles) / sizeof(ScrMgrScrHandles[0]);
     uint32_t i;
 
@@ -115,7 +122,8 @@ void ScrMgrInit(void) {
     }
 }
 
-bool ScrMgrSwitchScr(uint32_t scr_id, bool anim) {
+bool ScrMgrSwitchScr(uint32_t scr_id, bool anim)
+{
     SCR_MGR_SCR_HANDLE_T       *tgt_scr     = ScrMgrFindScrById(scr_id);
     SCR_MGR_SCR_HANDLE_T       *cur_scr     = NULL;
     lv_obj_t                   *cur_scr_obj = NULL;
@@ -172,7 +180,8 @@ bool ScrMgrSwitchScr(uint32_t scr_id, bool anim) {
     return true;
 }
 
-bool ScrMgrPushScr(uint32_t scr_id, bool anim) {
+bool ScrMgrPushScr(uint32_t scr_id, bool anim)
+{
     SCR_MGR_SCR_HANDLE_T       *tgt_scr = ScrMgrFindScrById(scr_id);
     SCR_MGR_SCR_STACK_HANDLE_T *stack_item;
 
@@ -217,7 +226,8 @@ bool ScrMgrPushScr(uint32_t scr_id, bool anim) {
     return true;
 }
 
-bool ScrMgrPopScr(bool anim) {
+bool ScrMgrPopScr(bool anim)
+{
     SCR_MGR_SCR_STACK_HANDLE_T *dst_item = NULL;
     lv_obj_t                   *cur_scr_obj;
     lv_obj_t                   *dst_scr_obj;
@@ -252,7 +262,8 @@ bool ScrMgrPopScr(bool anim) {
     return true;
 }
 
-bool ScrMgrPopNScr(uint32_t cnt, bool anim) {
+bool ScrMgrPopNScr(uint32_t cnt, bool anim)
+{
     SCR_MGR_SCR_STACK_HANDLE_T *dst_item = NULL;
     lv_obj_t                   *cur_scr_obj;
     lv_obj_t                   *dst_scr_obj;
@@ -295,7 +306,8 @@ bool ScrMgrPopNScr(uint32_t cnt, bool anim) {
     return true;
 }
 
-bool ScrMgrPopToRoot(bool anim) {
+bool ScrMgrPopToRoot(bool anim)
+{
     SCR_MGR_SCR_STACK_HANDLE_T *dst_item = NULL;
     lv_obj_t                   *cur_scr_obj;
 
@@ -337,7 +349,8 @@ bool ScrMgrPopToRoot(bool anim) {
     return true;
 }
 
-void ScrMgrTrimMem(void) {
+void ScrMgrTrimMem(void)
+{
     SCR_MGR_SCR_STACK_HANDLE_T *stack_item = ScrMgrScrStackRoot;
 
     while ((stack_item != NULL) && (stack_item != ScrMgrScrStackTop)) {

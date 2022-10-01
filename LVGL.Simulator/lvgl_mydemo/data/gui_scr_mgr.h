@@ -1,9 +1,13 @@
 /************************************************************************
- * Date: 2022-09-10 14:17:40
- * LastEditors: ShallowGreen123 2608653986@qq.com
- * LastEditTime: 2022-09-10 15:17:28
- * FilePath: \LVGL.Simulator\lvgl_mydemo\screen\gui_scr_mgr.h
+ * FilePath     : scr_mgr.h
+ * Author       : GX.Duan
+ * Date         : 2022-08-18 22:59:39
+ * LastEditTime : 2022-09-30 22:14:56
+ * LastEditors  : ShallowGreen123 2608653986@qq.com
+ * Copyright (c): 2022 by GX.Duan, All Rights Reserved.
+ * Github       : https://github.com/ShallowGreen123/lvgl_mydemo
  ************************************************************************/
+
 #ifndef __SCR_MGR_H__
 #define __SCR_MGR_H__
 
@@ -19,6 +23,7 @@
  * *******************************************************************************/
 #define DEF_SCR_MGR_LITTLE_MEM 0
 
+// ARM 结构的单片机使用
 // #define SCR_MGR_REG(handle) \
 //     __attribute__((used, section("APP_SCREEN"))) const typeof(handle) *ScrMgrScrHandleList_##handle = &(handle)
 
@@ -33,9 +38,9 @@
  *                                   MACROS
  * *******************************************************************************/
 #ifdef __SCR_MGR_C__
-#define DEF_SCR_MGR_EXT
+#    define DEF_SCR_MGR_EXT
 #else
-#define DEF_SCR_MGR_EXT extern
+#    define DEF_SCR_MGR_EXT extern
 #endif
 
 /*********************************************************************************
@@ -74,8 +79,7 @@ extern const SCR_MGR_SCR_HANDLE_T Gui_MainScrHandle;
 extern const SCR_MGR_SCR_HANDLE_T Gui_Test1ScrHandle;
 
 //
-DEF_SCR_MGR_EXT void
-ScrMgrInit(void);
+DEF_SCR_MGR_EXT void ScrMgrInit(void);
 
 /* Clear current stack and switch to new screen */
 DEF_SCR_MGR_EXT bool ScrMgrSwitchScr(uint32_t scr_id, bool anim);

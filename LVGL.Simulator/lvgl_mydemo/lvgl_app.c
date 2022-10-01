@@ -12,7 +12,7 @@
  *                                  INCLUDES
  * *******************************************************************************/
 #include "lvgl_app.h"
-#include "screen/gui_scr_mgr.h"
+#include "data/gui_scr_mgr.h"
 
 /*********************************************************************************
  *                                   DEFINES
@@ -39,7 +39,7 @@ static void log_write_timer_cb(lv_timer_t *t)
     TRACE_E("Hello wrold!");
     TRACE_W("Hello wrold!");
 
-    Lib_TraceProc();
+    Lib_LogProc();
 }
 
 static bool log_write_to_file(LIB_TRACE_ITEM_HANDLE_T *item)
@@ -53,8 +53,8 @@ static bool log_write_to_file(LIB_TRACE_ITEM_HANDLE_T *item)
 
 void lvgl_app_init(void)
 {
-    Lib_TraceInit();
-    Lib_TraceRegistWriter(log_write_to_file);
+    Lib_LogInit();
+    Lib_LogRegistWriter(log_write_to_file);
 
     DataModelInit();
 

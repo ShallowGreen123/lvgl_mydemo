@@ -1,4 +1,4 @@
-/************************************************************************
+﻿/************************************************************************
  * FilePath     : lvgl_app.h
  * Author       : GX.Duan
  * Date         : 2022-08-07 15:20:41
@@ -15,9 +15,9 @@
  * *******************************************************************************/
 #include "../lvgl/lvgl.h"
 #include <stdio.h>
-#include "log/gui_log.h"
+#include "log/lib_log.h"
 #include "data/dataModel.h"
-#include "screen/gui_scr_mgr.h"
+#include "data/gui_scr_mgr.h"
 
 #ifdef __cplusplus
 extern "C" {
