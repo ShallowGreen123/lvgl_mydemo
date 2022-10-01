@@ -39,14 +39,14 @@
     <ClCompile Include="lvgl_mydemo\screen\gui_test1_scr.c">
       <Filter>lvgl_mydemo\srceen</Filter>
     </ClCompile>
-    <ClCompile Include="lvgl_mydemo\log\drv_log.c">
-      <Filter>lvgl_mydemo\log</Filter>
-    </ClCompile>
     <ClCompile Include="lvgl_mydemo\data\gui_scr_mgr.c">
       <Filter>lvgl_mydemo\data</Filter>
     </ClCompile>
-    <ClCompile Include="lvgl_mydemo\log\lib_log.c">
-      <Filter>lvgl_mydemo\log</Filter>
+    <ClCompile Include="lvgl_mydemo\lib\drv_log.c">
+      <Filter>lvgl_mydemo\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\lib\lib_log.c">
+      <Filter>lvgl_mydemo\lib</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -80,8 +80,8 @@
     <Filter Include="lvgl_mydemo\assert\image">
       <UniqueIdentifier>{5aec906d-b671-4778-9999-6dcadc840600}</UniqueIdentifier>
     </Filter>
-    <Filter Include="lvgl_mydemo\log">
-      <UniqueIdentifier>{7c5bcdd0-7a51-46f7-804e-ed1f4371645d}</UniqueIdentifier>
+    <Filter Include="lvgl_mydemo\lib">
+      <UniqueIdentifier>{125c5bdc-13e9-45ed-bf0d-f844505c20ca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

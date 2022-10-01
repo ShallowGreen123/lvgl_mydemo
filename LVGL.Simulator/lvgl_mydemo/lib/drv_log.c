@@ -1,35 +1,21 @@
 ﻿/************************************************************************
- * FilePath     : lvgl_app.h
+ * FilePath     : drv_log.c
  * Author       : GX.Duan
- * Date         : 2022-08-07 15:20:41
- * LastEditTime : 2022-09-21 22:03:59
+ * Date         : 2022-09-21 22:22:33
+ * LastEditTime : 2022-09-30 22:29:58
  * LastEditors  : ShallowGreen123 2608653986@qq.com
  * Copyright (c): 2022 by GX.Duan, All Rights Reserved.
  * Github       : https://github.com/ShallowGreen123/lvgl_mydemo
  ************************************************************************/
-#ifndef LV_DEMO_INIT_H
-#define LV_DEMO_INIT_H
-
+#define __DRV_LOG_C__
 /*********************************************************************************
  *                                  INCLUDES
  * *******************************************************************************/
-#include "../lvgl/lvgl.h"
-#include <stdio.h>
-#include "lib/lib_log.h"
-#include "data/dataModel.h"
-#include "data/gui_scr_mgr.h"
+#include "drv_log.h"
 
-#ifdef __cplusplus
-extern "C" {
-#endif
 /*********************************************************************************
  *                                   DEFINES
  * *******************************************************************************/
-#ifdef __LVGL_APP_C__
-#    define DEF_EXTERN
-#else
-#    define DEF_EXTERN extern
-#endif
 
 /*********************************************************************************
  *                                   MACROS
@@ -38,18 +24,36 @@ extern "C" {
 /*********************************************************************************
  *                                  TYPEDEFS
  * *******************************************************************************/
-enum {
-    GUI_MIAN_SCR_ID = 0,
-    GUI_TEST1_SCR_ID,
-};
 
 /*********************************************************************************
- *                              GLOBAL PROTOTYPES
+ *                              STATIC FUNCTION
  * *******************************************************************************/
-DEF_EXTERN void lvgl_app_init(void);
 
-#ifdef __cplusplus
-} /*extern "C"*/
-#endif
+/*********************************************************************************
+ *                              GLOBAL FUNCTION
+ * *******************************************************************************/
+void Drv_LogPrintf(void *str)
+{
+    printf("\033[1;32m%s\n", (uint8_t *)str);
+}
 
-#endif /* LV_DEMO_INIT_H */
+void Drv_LogColorPrintf(void *str, void *prefix)
+{
+    char  type      = *((char *)prefix + 1);
+    char *color_str = NULL;
+
+    /* clang-format off */
+    switch (type) {
+        case 'V': printf(RTT_CTRL_TEXT_BRIGHT_YELLOW); break;
+        case 'D': printf(RTT_CTRL_TEXT_BRIGHT_GREEN); break;
+        case 'I': printf(RTT_CTRL_TEXT_BRIGHT_WHITE); break;
+        case 'W': printf(RTT_CTRL_TEXT_BRIGHT_YELLOW); break;
+        case 'E': printf(RTT_CTRL_TEXT_BRIGHT_RED); break;
+        case 'X' :printf(RTT_CTRL_TEXT_BRIGHT_MAGENTA); break;
+        default:
+            break;
+    }
+    /* clang-format on */
+    printf("%s\n", (uint8_t *)str);
+    printf(RTT_CTRL_RESET);
+}
