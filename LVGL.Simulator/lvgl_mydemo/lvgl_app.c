@@ -1,10 +1,10 @@
 ﻿/************************************************************************
  * FilePath     : lvgl_app.c
  * Author       : GX.Duan
- * Date         : 2022-08-07
- * LastEditTime : 2022-08-19
+ * Date         : 2022-08-07 15:20:41
+ * LastEditTime : 2022-10-01 23:02:06
  * LastEditors  : ShallowGreen123 2608653986@qq.com
- * Copyright (c): by GX.Duan, All Rights Reserved.
+ * Copyright (c): 2022 by GX.Duan, All Rights Reserved.
  * Github       : https://github.com/ShallowGreen123/lvgl_mydemo
  ************************************************************************/
 

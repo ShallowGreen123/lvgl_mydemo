@@ -23,9 +23,9 @@
  *                                   MACROS
  * *******************************************************************************/
 #ifdef __MAIN_SCR_C_
-#define DEF_MAIN_SCR_EXT
+#    define DEF_MAIN_SCR_EXT
 #else
-#define DEF_MAIN_SCR_EXT extern
+#    define DEF_MAIN_SCR_EXT extern
 #endif
 
 /*********************************************************************************

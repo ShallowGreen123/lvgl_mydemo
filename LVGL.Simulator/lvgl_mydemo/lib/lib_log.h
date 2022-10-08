@@ -52,6 +52,7 @@
 #define DEF_DBG_LV                       TRACE_LV_DBG
 
 #define DEF_LIB_TRACE_FORCE_PRINTF       1
+
 #define DEF_LOG_COLOR_PRINT_EN           1
 
 #define DEF_LIB_TRACE_MAX_MSG_SIZE       256

@@ -96,6 +96,16 @@ BreakBeforeBinaryOperators: NonAssignment
 #   Allman(总是在大括号前换行), GNU(总是在大括号前换行，并对于控制语句的大括号增加额外的缩进), WebKit(在函数前换行), Custom
 #   注：这里认为语句块也属于函数
 BreakBeforeBraces: Custom
+BraceWrapping:
+  AfterEnum: false
+  AfterStruct: false
+  AfterUnion: false
+  AfterCaseLabel: false
+  AfterClass: true
+  AfterFunction: true
+  SplitEmptyFunction: false
+  AfterNamespace: false
+  AfterExternBlock: false
 
 # 在三元运算符前换行
 BreakBeforeTernaryOperators: false
@@ -133,7 +143,8 @@ FixNamespaceComments: true
 # 缩进case标签
 IndentCaseLabels: false
 
-IndentPPDirectives: None
+# Possible values: None\AfterHash\BeforeHash
+IndentPPDirectives: AfterHash 
 
 # 缩进宽度
 IndentWidth: 4
@@ -219,7 +230,7 @@ IndentCaseLabels: true
 #三元运算符将放置在换行符之后
 BreakBeforeTernaryOperators: true
 
-BreakBeforeBraces: Attach
+BreakBeforeBraces: Custom
 
 AllowShortCaseLabelsOnASingleLine: false
 
@@ -230,6 +241,9 @@ AlignTrailingComments: true
 AlignOperands: AlignAfterOperator
 
 #对齐宏
+# They can also be read as a whole for compatibility. 
+# The choices are: 
+# - None - Consecutive - AcrossEmptyLines - AcrossComments - AcrossEmptyLinesAndComments
 AlignConsecutiveMacros: AcrossEmptyLinesAndComments
 #对齐连续等号
 AlignConsecutiveAssignments: AcrossEmptyLines

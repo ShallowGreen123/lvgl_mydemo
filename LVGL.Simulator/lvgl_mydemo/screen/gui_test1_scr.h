@@ -23,9 +23,9 @@
  *                                   MACROS
  * *******************************************************************************/
 #ifdef __TEST1_SCR_C_
-#define DEF_TEST1_SCR_EXT
+#    define DEF_TEST1_SCR_EXT
 #else
-#define DEF_TEST1_SCR_EXT extern
+#    define DEF_TEST1_SCR_EXT extern
 #endif
 
 /*********************************************************************************

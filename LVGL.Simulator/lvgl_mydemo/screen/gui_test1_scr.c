@@ -7,16 +7,6 @@
  * Copyright (c): 2022 by GX.Duan, All Rights Reserved.
  * Github       : https://github.com/ShallowGreen123/lvgl_mydemo
  ************************************************************************/
-/************************************************************************
- * FilePath     : gui_test1_scr.c
- * Author       : GX.Duan
- * Date         : 2022-09-10 17:10:59
- * LastEditTime : 2022-09-10 17:13:08
- * LastEditors  : ShallowGreen123 2608653986@qq.com
- * Copyright (c): 2022 by GX.Duan, All Rights Reserved.
- * Github       : https://github.com/ShallowGreen123/lvgl_mydemo
- ************************************************************************/
-
 #define __MAIN_SCR_C_
 
 /*********************************************************************************
@@ -44,7 +34,8 @@ static lv_obj_t *BtnLabel     = NULL;
 /*********************************************************************************
  *                              STATIC FUNCTION
  * *******************************************************************************/
-void test1_btn_event_cb(lv_event_t *e) {
+void test1_btn_event_cb(lv_event_t *e)
+{
     lv_obj_t *obj = lv_event_get_target(e);
 
     if (obj == test1_btn) {
@@ -56,7 +47,8 @@ void test1_btn_event_cb(lv_event_t *e) {
 /*********************************************************************************
  *                              GLOBAL FUNCTION
  * *******************************************************************************/
-static lv_obj_t *Gui_Test1ScrCreate(lv_obj_t *parent) {
+static lv_obj_t *Gui_Test1ScrCreate(lv_obj_t *parent)
+{
     Test1ScrRoot = lv_obj_create(parent);
     lv_obj_set_size(Test1ScrRoot, lv_pct(100), lv_pct(100));
     lv_obj_set_style_bg_color(Test1ScrRoot, lv_color_black(), LV_PART_MAIN);
@@ -73,24 +65,28 @@ static lv_obj_t *Gui_Test1ScrCreate(lv_obj_t *parent) {
     return Test1ScrRoot;
 }
 
-static void Gui_Test1ScrLayout(void) {
+static void Gui_Test1ScrLayout(void)
+{
     lv_obj_align_to(Test1Label, Test1ScrRoot, LV_ALIGN_CENTER, 0, -30);
 
     lv_obj_center(BtnLabel);
     lv_obj_align_to(test1_btn, Test1ScrRoot, LV_ALIGN_CENTER, 0, 30);
 }
 
-static void Gui_Test1ScrEnter(void) {
+static void Gui_Test1ScrEnter(void)
+{
     Gui_Test1ScrLayout();
 
     lv_obj_add_event_cb(test1_btn, test1_btn_event_cb, LV_EVENT_CLICKED, NULL);
 }
 
-static void Gui_Test1ScrExit(void) {
+static void Gui_Test1ScrExit(void)
+{
     lv_obj_remove_event_cb(test1_btn, test1_btn_event_cb);
 }
 
-static void Gui_Test1ScrDestory(void) {
+static void Gui_Test1ScrDestory(void)
+{
 }
 
 const SCR_MGR_SCR_HANDLE_T Gui_Test1ScrHandle = {
