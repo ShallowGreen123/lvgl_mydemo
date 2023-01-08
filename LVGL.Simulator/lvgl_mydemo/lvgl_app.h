@@ -15,7 +15,7 @@
  * *******************************************************************************/
 #include "../lvgl/lvgl.h"
 #include <stdio.h>
-#include "lib/lib_log.h"
+#include "lib/lib_sys_log.h"
 #include "data/dataModel.h"
 #include "data/gui_scr_mgr.h"
 

@@ -33,20 +33,27 @@ static void log_write_timer_cb(lv_timer_t *t)
 {
     LV_UNUSED(t);
 
-    TRACE_V("Hello wrold!");
-    TRACE_D("Hello wrold!");
-    TRACE_I("Hello wrold!");
-    TRACE_E("Hello wrold!");
-    TRACE_W("Hello wrold!");
-
-    Lib_LogProc();
+    Lib_LogLoop();
 }
 
-static bool log_write_to_file(LIB_TRACE_ITEM_HANDLE_T *item)
+static bool log_write_to_file(LIB_LOG_ITEM_T *item)
 {
-    TRACE_D("item info = %s", item->Buf);
+    printf("File %s\n", item->Buf);
     return true;
 }
+
+static bool log_write_to_flash(LIB_LOG_ITEM_T *item)
+{
+    printf("Flash %s\n", item->Buf);
+    return true;
+}
+
+static bool log_write_to_sd(LIB_LOG_ITEM_T *item)
+{
+    printf("Sd %s\n", item->Buf);
+    return true;
+}
+
 /*********************************************************************************
  *                              GLOBAL FUNCTION
  * *******************************************************************************/
@@ -54,12 +61,19 @@ static bool log_write_to_file(LIB_TRACE_ITEM_HANDLE_T *item)
 void lvgl_app_init(void)
 {
     Lib_LogInit();
-    Lib_LogRegistWriter(log_write_to_file);
+
+    Lib_LogRegistWriter(log_write_to_file);           // 模拟写日志到文件
+    Lib_LogRegistWriter(log_write_to_flash);          // 模拟写日志到Flash
+    Lib_LogRegistWriter(log_write_to_sd);             // 模拟写日志到SD卡
+
+    Lib_LogUnregistWriter(log_write_to_sd);
 
     DataModelInit();
 
     ScrMgrInit();
     ScrMgrSwitchScr(GUI_MIAN_SCR_ID, true);
 
-    lv_timer_create(log_write_timer_cb, 3000, NULL);
+    TRACE_W("Hello wrold!");
+
+    lv_timer_create(log_write_timer_cb, 50, NULL);
 }

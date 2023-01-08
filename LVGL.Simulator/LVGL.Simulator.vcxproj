@@ -54,8 +54,11 @@
     <ClCompile Include="LVGL.Simulator.cpp" />
     <ClCompile Include="lvgl_mydemo\data\dataModel.c" />
     <ClCompile Include="lvgl_mydemo\data\gui_scr_mgr.c" />
+    <ClCompile Include="lvgl_mydemo\lib\data_struct\linklist_malloc.c" />
+    <ClCompile Include="lvgl_mydemo\lib\data_struct\queue_malloc.c" />
+    <ClCompile Include="lvgl_mydemo\lib\data_struct\stack_malloc.c" />
     <ClCompile Include="lvgl_mydemo\lib\drv_log.c" />
-    <ClCompile Include="lvgl_mydemo\lib\lib_log.c" />
+    <ClCompile Include="lvgl_mydemo\lib\lib_sys_log.c" />
     <ClCompile Include="lvgl_mydemo\lvgl_app.c" />
     <ClCompile Include="lvgl_mydemo\screen\gui_main_scr.c" />
     <ClCompile Include="lvgl_mydemo\screen\gui_test1_scr.c" />
