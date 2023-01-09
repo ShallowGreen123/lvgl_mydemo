@@ -101,6 +101,13 @@ void Lib_LogPrintf(uint8_t level, const char *fmt, ...)
     Lib_LogUnlock();
 
 #if DEF_LIB_LOG_PRINTF
+    // static uint32_t t   = 0;
+    // static uint32_t err = 0;
+    // uint32_t        len = strlen(log_item->Buf);
+    // if (len == 0) {
+    //     err++;
+    // }
+    // printf("File[%d] e=%d %s\n", t++, err, log_item->Buf);
     printf("%s\n", log_item->Buf);
 #endif
 }

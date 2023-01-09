@@ -34,18 +34,13 @@ void *QueueMallocInput(queue_t *q, void *val, val_size valSize)
         return NULL;
     }
 
-    if (DEF_QUEUE_RESERVE_SIZE(q) < valSize) {          // 没有足够的空间保存这个数据
-        return NULL;
-    }
-
     if (q->elemCnt > 0) {
         bufPos = q->tail + DEF_QUEUE_GET_VAL_SIZE(q, q->tail);
         if (q->tail >= q->front) {          // tail 在 front 后面，队列还没有循环
-            if (((q->bufSize - bufPos) < needSize) && (q->front < needSize)) {
-                return NULL;          // 空间虽然足够，但是一部分在头，一部分在末尾，不连续
-            }
             if (q->bufSize - bufPos < needSize) {
-                DEF_QUEUE_SET_VAL_SIZE(q, bufPos, DEF_QUEUE_VAL_LEN_INVAILD);
+                if (bufPos + sizeof(val_size) <= q->bufSize) {
+                    DEF_QUEUE_SET_VAL_SIZE(q, bufPos, DEF_QUEUE_VAL_LEN_INVAILD);
+                }
                 bufPos = 0;
             }
         } else {          // front 在 tail 后面，队列已经循环
@@ -78,17 +73,19 @@ void *QueueMallocOutput(queue_t *q, val_size *size)
     if (size) {
         *size = DEF_QUEUE_GET_VAL_SIZE(q, q->front);
     }
-    dataSize = DEF_QUEUE_GET_VAL_SIZE(q, q->front) + sizeof(val_size);
+    dataSize = DEF_QUEUE_GET_VAL_SIZE(q, q->front);
     value    = &q->buf[q->front + sizeof(val_size)];
 
     q->front += dataSize;
 
-    if (DEF_QUEUE_GET_VAL_SIZE(q, q->front) == DEF_QUEUE_VAL_LEN_INVAILD) {
-        q->front = 0;
-    }
-
     q->usedSize -= dataSize;
     q->elemCnt--;
+
+    if ((q->elemCnt == 0)
+        || (q->front + sizeof(val_size) >= q->bufSize)
+        || (DEF_QUEUE_GET_VAL_SIZE(q, q->front) == DEF_QUEUE_VAL_LEN_INVAILD)) {
+        q->front = 0;
+    }
 
     return value;
 }
@@ -103,8 +100,8 @@ bool QueueMallocSpaceChk(queue_t *q, val_size size)
     }
 
     if (q->elemCnt > 0) {
+        bufPos = q->tail + DEF_QUEUE_GET_VAL_SIZE(q, q->tail);
         if (q->tail >= q->front) {
-            bufPos = q->tail + DEF_QUEUE_GET_VAL_SIZE(q, q->tail);
             if ((q->bufSize - bufPos < needSize) && (q->front < needSize)) {
                 return false;
             }
@@ -136,6 +133,10 @@ void *QueueMallocPeekAfter(queue_t *q, void *cur_item, val_size *size)
 
     if (q->init == false || q->elemCnt == 0 || q->tail == bufPos) {
         return NULL;
+    }
+
+    if (bufPos + sizeof(val_size) >= q->bufSize) {
+        bufPos = 0;
     }
 
     bufPos   = bufPos + DEF_QUEUE_GET_VAL_SIZE(q, bufPos);
