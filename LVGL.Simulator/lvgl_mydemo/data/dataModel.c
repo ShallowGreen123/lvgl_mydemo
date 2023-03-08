@@ -1,13 +1,21 @@
-/************************************************************************ 
+﻿/************************************************************************
  * FilePath     : dataModel.c
  * Author       : GX.Duan
  * Date         : 2022-08-18
  * LastEditTime : 2022-08-19
  * LastEditors  : ShallowGreen123 2608653986@qq.com
- * Copyright (c): by GX.Duan, All Rights Reserved. 
+ * Copyright (c): by GX.Duan, All Rights Reserved.
  * Github       : https://github.com/ShallowGreen123/lvgl_mydemo
  ************************************************************************/
 #define __DATA_MODEL_C__
+
+/** need to define
+ *  typedef enum data_model_id_e {
+        //add you data id...
+
+        DATA_MODEL_ID_MAX,
+    } DATA_MODEL_ID_E;
+*/
 
 /*********************************************************************************
  *                                  INCLUDES
@@ -15,6 +23,7 @@
 #include "dataModel.h"
 #include <string.h>
 #include <stdio.h>
+
 
 /*********************************************************************************
  *                                   DEFINES
@@ -33,7 +42,8 @@ static DataModelListener DataModelListenerList[DATA_MODEL_ID_MAX];
 /*********************************************************************************
  *                              STATIC FUNCTION
  * *******************************************************************************/
-static int setValue(DATA_MODEL_ID_E id, void *data, u32 extra1, u32 extra2) {
+static int setValue(DATA_MODEL_ID_E id, void *data, u32 extra1, u32 extra2)
+{
     int               i;
     C_GENERIC_TYPE_S *c_data;
 
@@ -53,7 +63,8 @@ static int setValue(DATA_MODEL_ID_E id, void *data, u32 extra1, u32 extra2) {
     return DATA_MODEL_OK;
 }
 
-static int getValue(DATA_MODEL_ID_E id, C_GENERIC_TYPE_S **c_data) {
+static int getValue(DATA_MODEL_ID_E id, C_GENERIC_TYPE_S **c_data)
+{
     if (id > DATA_MODEL_ID_MAX) {
         return DATA_MODEL_ERR_OUT_RANGE;
     }
@@ -65,12 +76,14 @@ static int getValue(DATA_MODEL_ID_E id, C_GENERIC_TYPE_S **c_data) {
  *                              GLOBAL FUNCTION
  * *******************************************************************************/
 /*** init ***/
-void DataModelInit(void) {
+void DataModelInit(void)
+{
     memset(DataModelDataMap, 0, sizeof(DataModelDataMap));
     memset(DataModelListenerList, 0, sizeof(DataModelListenerList));
 }
 
-int DataModelRegister(DataModelListener listener) {
+int DataModelRegister(DataModelListener listener)
+{
     int i;
     int idx   = -1;
     int exist = 0;
@@ -97,7 +110,8 @@ int DataModelRegister(DataModelListener listener) {
     return DATA_MODEL_ERR_FULL_LIST;
 }
 
-int DataModelRemove(DataModelListener listener) {
+int DataModelRemove(DataModelListener listener)
+{
     int i;
     for (i = 0; i < DATA_MODEL_ID_MAX; i++) {
         if (DataModelListenerList[i] == listener) {
@@ -107,101 +121,170 @@ int DataModelRemove(DataModelListener listener) {
     }
     return DATA_MODEL_ERR_EXIT;
 }
+
+#if 1 // macor
+#define set_pst(my_enum, symbol, type)                      \
+    int DataModelSet##symbol(my_enum id, type val)          \
+    {                                                       \
+        if (sizeof(type) == sizeof(uint64_t)) {             \
+            setValue(id, NULL, (u32)(val >> 32), (u32)val); \
+        } else if (sizeof(type) <= sizeof(uint32_t)) {      \
+            setValue(id, NULL, (uint32_t)val, 0);           \
+        }                                                   \
+        return 0;                                           \
+    }
+
+#define get_pst(my_enum, symbol, type)                                              \
+    int DataModelGet##symbol(my_enum id, type *val)                                 \
+    {                                                                               \
+        C_GENERIC_TYPE_S *c_data;                                                   \
+        getValue(id, &c_data);                                                      \
+        if (sizeof(type) == sizeof(uint64_t)) {                                     \
+            *val = (type)(0xFFFFFFFFULL & (c_data->extra1 << 32) | c_data->extra2); \
+        } else if (sizeof(type) <= sizeof(uint32_t)) {                              \
+            *val = (type)c_data->extra1;                                            \
+        }                                                                           \
+        return 0;                                                                   \
+    }
+
+#define DATA_MODEL_SET_REG(my_enum, symbol, data_type) set_pst(my_enum, symbol, data_type)
+#define DATA_MODEL_GET_REG(my_enum, symbol, data_type) get_pst(my_enum, symbol, data_type)
+
+/* interface */
+// set
+DATA_MODEL_SET_REG(DATA_MODEL_ID_E, U8, uint8_t);
+DATA_MODEL_SET_REG(DATA_MODEL_ID_E, S8, int8_t);
+DATA_MODEL_SET_REG(DATA_MODEL_ID_E, U16, uint16_t);
+DATA_MODEL_SET_REG(DATA_MODEL_ID_E, S16, int16_t);
+DATA_MODEL_SET_REG(DATA_MODEL_ID_E, U32, uint32_t);
+DATA_MODEL_SET_REG(DATA_MODEL_ID_E, S32, int32_t);
+// get
+DATA_MODEL_GET_REG(DATA_MODEL_ID_E, U8, uint8_t);
+DATA_MODEL_GET_REG(DATA_MODEL_ID_E, S8, int8_t);
+DATA_MODEL_GET_REG(DATA_MODEL_ID_E, U16, uint16_t);
+DATA_MODEL_GET_REG(DATA_MODEL_ID_E, S16, int16_t);
+DATA_MODEL_GET_REG(DATA_MODEL_ID_E, U32, uint32_t);
+DATA_MODEL_GET_REG(DATA_MODEL_ID_E, S32, int32_t);
+// macor end
+
+#else
+//////////////////////////////////////////////////////////////////////////
 /*** 8 ***/
-int DataModelSetU8(DATA_MODEL_ID_E id, u8 val) {
+int DataModelSetU8(DATA_MODEL_ID_E id, u8 val)
+{
     return setValue(id, NULL, (u32)val, 0);
 }
 
-int DataModelGetU8(DATA_MODEL_ID_E id, u8 *val) {
+int DataModelGetU8(DATA_MODEL_ID_E id, u8 *val)
+{
     C_GENERIC_TYPE_S *c_data;
     getValue(id, &c_data);
     *val = (u8)c_data->extra1;
     return DATA_MODEL_OK;
 }
 
-int DataModelSetS8(DATA_MODEL_ID_E id, s8 val) {
+int DataModelSetS8(DATA_MODEL_ID_E id, s8 val)
+{
     return setValue(id, NULL, (u32)val, 0);
 }
 
-int DataModelGetS8(DATA_MODEL_ID_E id, s8 *val) {
+int DataModelGetS8(DATA_MODEL_ID_E id, s8 *val)
+{
     C_GENERIC_TYPE_S *c_data;
     getValue(id, &c_data);
     *val = (s8)c_data->extra1;
     return DATA_MODEL_OK;
 }
 /*** 16 ***/
-int DataModelSetU16(DATA_MODEL_ID_E id, u16 val) {
+int DataModelSetU16(DATA_MODEL_ID_E id, u16 val)
+{
     return setValue(id, NULL, (u32)val, 0);
 }
 
-int DataModelGetU16(DATA_MODEL_ID_E id, u16 *val) {
+int DataModelGetU16(DATA_MODEL_ID_E id, u16 *val)
+{
     C_GENERIC_TYPE_S *c_data;
     getValue(id, &c_data);
     *val = (u16)c_data->extra1;
     return DATA_MODEL_OK;
 }
 
-int DataModelSetS16(DATA_MODEL_ID_E id, s16 val) {
+int DataModelSetS16(DATA_MODEL_ID_E id, s16 val)
+{
     return setValue(id, NULL, (u32)val, 0);
 }
 
-int DataModelGetS16(DATA_MODEL_ID_E id, s16 *val) {
+int DataModelGetS16(DATA_MODEL_ID_E id, s16 *val)
+{
     C_GENERIC_TYPE_S *c_data;
     getValue(id, &c_data);
     *val = (s16)c_data->extra1;
     return DATA_MODEL_OK;
 }
 /*** 32 ***/
-int DataModelSetU32(DATA_MODEL_ID_E id, u32 val) {
+int DataModelSetU32(DATA_MODEL_ID_E id, u32 val)
+{
     printf("setU32 = %d\n", val);
     return setValue(id, NULL, val, 0);
 }
 
-int DataModelGetU32(DATA_MODEL_ID_E id, u32 *val) {
+int DataModelGetU32(DATA_MODEL_ID_E id, u32 *val)
+{
     C_GENERIC_TYPE_S *c_data;
     getValue(id, &c_data);
     *val = c_data->extra1;
     return DATA_MODEL_OK;
 }
 
-int DataModelSetS32(DATA_MODEL_ID_E id, s32 val) {
+int DataModelSetS32(DATA_MODEL_ID_E id, s32 val)
+{
     return setValue(id, NULL, (u32)val, 0);
 }
 
-int DataModelGetS32(DATA_MODEL_ID_E id, s32 *val) {
+int DataModelGetS32(DATA_MODEL_ID_E id, s32 *val)
+{
     C_GENERIC_TYPE_S *c_data;
     getValue(id, &c_data);
     *val = (s32)c_data->extra1;
     return DATA_MODEL_OK;
 }
 /*** 64 ***/
-int DataModelSetU64(DATA_MODEL_ID_E id, u64 val) {
+int DataModelSetU64(DATA_MODEL_ID_E id, u64 val)
+{
     return setValue(id, NULL, (u32)(val >> 32), (u32)val);
 }
 
-int DataModelGetU64(DATA_MODEL_ID_E id, u64 *val) {
+int DataModelGetU64(DATA_MODEL_ID_E id, u64 *val)
+{
     C_GENERIC_TYPE_S *c_data;
     getValue(id, &c_data);
     *val = (u64)(0xFFFFFFFFULL & (c_data->extra1 << 32) | c_data->extra2);
     return DATA_MODEL_OK;
 }
 
-int DataModelSetS64(DATA_MODEL_ID_E id, s64 val) {
+int DataModelSetS64(DATA_MODEL_ID_E id, s64 val)
+{
     return setValue(id, NULL, (u32)(val >> 32), (u32)val);
 }
 
-int DataModelGetS64(DATA_MODEL_ID_E id, s64 *val) {
+int DataModelGetS64(DATA_MODEL_ID_E id, s64 *val)
+{
     C_GENERIC_TYPE_S *c_data;
     getValue(id, &c_data);
     *val = (s64)(0xFFFFFFFFULL & (c_data->extra1 << 32) | c_data->extra2);
     return DATA_MODEL_OK;
 }
+
+#endif
+
 /*** Array ***/
-int DataModelSetArray(DATA_MODEL_ID_E id, void *arr, u32 len) {
+int DataModelSetArray(DATA_MODEL_ID_E id, void *arr, u32 len)
+{
     return setValue(id, arr, len, 0);
 }
 
-int DataModelGetArray(DATA_MODEL_ID_E id, void **arr, u32 *len) {
+int DataModelGetArray(DATA_MODEL_ID_E id, void **arr, u32 *len)
+{
     C_GENERIC_TYPE_S *c_data;
     getValue(id, &c_data);
     *arr = (void *)c_data->data;
@@ -209,11 +292,13 @@ int DataModelGetArray(DATA_MODEL_ID_E id, void **arr, u32 *len) {
     return DATA_MODEL_OK;
 }
 /*** string ***/
-int DataModelSetString(DATA_MODEL_ID_E id, void *str) {
+int DataModelSetString(DATA_MODEL_ID_E id, void *str)
+{
     return setValue(id, str, 0, 0);
 }
 
-int DataModelGetString(DATA_MODEL_ID_E id, void **str) {
+int DataModelGetString(DATA_MODEL_ID_E id, void **str)
+{
     C_GENERIC_TYPE_S *c_data;
     getValue(id, &c_data);
     *str = (void *)c_data->data;

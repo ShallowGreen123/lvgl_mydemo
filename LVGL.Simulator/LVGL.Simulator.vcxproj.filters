@@ -57,6 +57,66 @@
     <ClCompile Include="lvgl_mydemo\lib\lib_sys_log.c">
       <Filter>lvgl_mydemo\lib</Filter>
     </ClCompile>
+    <ClCompile Include="lvgl_mydemo\widgets\taskbar.c">
+      <Filter>lvgl_mydemo\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_battery_0_png.c">
+      <Filter>lvgl_mydemo\assert\image</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_battery_1_png.c">
+      <Filter>lvgl_mydemo\assert\image</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_battery_2_png.c">
+      <Filter>lvgl_mydemo\assert\image</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_battery_3_png.c">
+      <Filter>lvgl_mydemo\assert\image</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_bluetooth_png.c">
+      <Filter>lvgl_mydemo\assert\image</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_bt_icon_png.c">
+      <Filter>lvgl_mydemo\assert\image</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_download0_png.c">
+      <Filter>lvgl_mydemo\assert\image</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_download1_png.c">
+      <Filter>lvgl_mydemo\assert\image</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_no_bluetooth_png.c">
+      <Filter>lvgl_mydemo\assert\image</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_no_usb_png.c">
+      <Filter>lvgl_mydemo\assert\image</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_no_wifi_png.c">
+      <Filter>lvgl_mydemo\assert\image</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_power_off_png.c">
+      <Filter>lvgl_mydemo\assert\image</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_setting0_png.c">
+      <Filter>lvgl_mydemo\assert\image</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_setting1_png.c">
+      <Filter>lvgl_mydemo\assert\image</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_usb_png.c">
+      <Filter>lvgl_mydemo\assert\image</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_wifi_icon_png.c">
+      <Filter>lvgl_mydemo\assert\image</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_wifi_png.c">
+      <Filter>lvgl_mydemo\assert\image</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\widgets\popwin.c">
+      <Filter>lvgl_mydemo\widgets</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl_mydemo\widgets\settinglist.c">
+      <Filter>lvgl_mydemo\widgets</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LVGL.Simulator.rc" />

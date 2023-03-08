@@ -21,9 +21,9 @@
  *                                   DEFINES
  * *******************************************************************************/
 #ifdef __DRV_LOG_C__
-#    define DEF_EXTERN
+#    define DEF_LOG_EXTERN
 #else
-#    define DEF_EXTERN extern
+#    define DEF_LOG_EXTERN extern
 #endif
 
 /*********************************************************************************
@@ -75,7 +75,7 @@
 /*********************************************************************************
  *                              GLOBAL PROTOTYPES
  * *******************************************************************************/
-DEF_EXTERN void Drv_LogPrintf(void *str);
-DEF_EXTERN void Drv_LogColorPrintf(void *str, void *prefix);
+DEF_LOG_EXTERN void Drv_LogPrintf(void *str);
+DEF_LOG_EXTERN void Drv_LogColorPrintf(void *str, void *prefix);
 
 #endif /* DRV_LOG_H */

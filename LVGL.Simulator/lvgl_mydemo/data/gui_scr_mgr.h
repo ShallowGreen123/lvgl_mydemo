@@ -23,7 +23,7 @@
  * *******************************************************************************/
 #define DEF_SCR_MGR_LITTLE_MEM 0
 
-// ARM 结构的单片机使用
+// cortex-M xil单片机使用
 // #define SCR_MGR_REG(handle) \
 //     __attribute__((used, section("APP_SCREEN"))) const typeof(handle) *ScrMgrScrHandleList_##handle = &(handle)
 
