@@ -24,10 +24,10 @@
  *====================*/
 
 /*Color depth: 1 (1 byte per pixel), 8 (RGB332), 16 (RGB565), 32 (ARGB8888)*/
-#define LV_COLOR_DEPTH 32
+#define LV_COLOR_DEPTH 16
 
 /*Swap the 2 bytes of RGB565 color. Useful if the display has an 8-bit interface (e.g. SPI)*/
-#define LV_COLOR_16_SWAP 0
+#define LV_COLOR_16_SWAP 1
 
 /*Enable more complex drawing routines to manage screens transparency.
  *Can be used if the UI is above another layer, e.g. an OSD menu or video player.
@@ -220,14 +220,14 @@
  *-----------*/
 
 /*1: Show CPU usage and FPS count*/
-#define LV_USE_PERF_MONITOR 1
+#define LV_USE_PERF_MONITOR 0
 #if LV_USE_PERF_MONITOR
     #define LV_USE_PERF_MONITOR_POS LV_ALIGN_BOTTOM_RIGHT
 #endif
 
 /*1: Show the used memory and the memory fragmentation
  * Requires LV_MEM_CUSTOM = 0*/
-#define LV_USE_MEM_MONITOR 1
+#define LV_USE_MEM_MONITOR 0
 #if LV_USE_MEM_MONITOR
     #define LV_USE_MEM_MONITOR_POS LV_ALIGN_BOTTOM_LEFT
 #endif

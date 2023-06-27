@@ -8,6 +8,7 @@
     <RootNamespace>LVGL</RootNamespace>
     <MileProjectType>ConsoleApplication</MileProjectType>
     <MileProjectManifestFile>LVGL.Simulator.manifest</MileProjectManifestFile>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <PropertyGroup Label="Configuration" Condition="'$(Configuration)'=='Debug'">
     <SupportLTL>false</SupportLTL>
@@ -27,8 +28,10 @@
       <Optimization Condition="'$(Configuration)'=='Release'">MinSpace</Optimization>
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdcpplatest</LanguageStandard>
       <LanguageStandard_C Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdc17</LanguageStandard_C>
-      <LanguageStandard_C Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdc11</LanguageStandard_C>
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdcpplatest</LanguageStandard>
+      <LanguageStandard_C Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">stdc11</LanguageStandard_C>
+      <DisableLanguageExtensions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</DisableLanguageExtensions>
+      <LanguageStandard_C Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdc11</LanguageStandard_C>
     </ClCompile>
   </ItemDefinitionGroup>
   <Import Project="LVGL.Portable.vcxitems" />
@@ -52,6 +55,23 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LVGL.Simulator.cpp" />
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_battery_0_png.c" />
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_battery_1_png.c" />
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_battery_2_png.c" />
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_battery_3_png.c" />
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_bluetooth_png.c" />
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_bt_icon_png.c" />
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_download0_png.c" />
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_download1_png.c" />
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_no_bluetooth_png.c" />
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_no_usb_png.c" />
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_no_wifi_png.c" />
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_power_off_png.c" />
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_setting0_png.c" />
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_setting1_png.c" />
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_usb_png.c" />
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_wifi_icon_png.c" />
+    <ClCompile Include="lvgl_mydemo\assert\image\ui_img_wifi_png.c" />
     <ClCompile Include="lvgl_mydemo\data\dataModel.c" />
     <ClCompile Include="lvgl_mydemo\data\gui_scr_mgr.c" />
     <ClCompile Include="lvgl_mydemo\lib\data_struct\linklist_malloc.c" />
@@ -62,6 +82,9 @@
     <ClCompile Include="lvgl_mydemo\lvgl_app.c" />
     <ClCompile Include="lvgl_mydemo\screen\gui_main_scr.c" />
     <ClCompile Include="lvgl_mydemo\screen\gui_test1_scr.c" />
+    <ClCompile Include="lvgl_mydemo\widgets\popwin.c" />
+    <ClCompile Include="lvgl_mydemo\widgets\settinglist.c" />
+    <ClCompile Include="lvgl_mydemo\widgets\taskbar.c" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="LVGL.Simulator.rc" />

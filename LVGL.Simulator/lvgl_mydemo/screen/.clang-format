@@ -143,8 +143,9 @@ FixNamespaceComments: true
 # 缩进case标签
 IndentCaseLabels: false
 
+#########################################
 # Possible values: None\AfterHash\BeforeHash
-IndentPPDirectives: AfterHash 
+IndentPPDirectives: BeforeHash 
 
 # 缩进宽度
 IndentWidth: 4
