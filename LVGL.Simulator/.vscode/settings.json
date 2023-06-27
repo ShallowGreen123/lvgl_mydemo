@@ -5,23 +5,7 @@
         "stdio.h": "c",
         "gui_log.h": "c",
         "lvgl.h": "c",
-        "lvgl_app.h": "c",
-        "stdint.h": "c",
-        "datamodel.h": "c",
-        "gui_test1_scr.h": "c",
-        "compare": "c",
-        "tuple": "c",
-        "type_traits": "c",
-        "utility": "c",
-        "xmemory": "c",
-        "xstring": "c",
-        "xtr1common": "c",
-        "xutility": "c",
-        "image.h": "c",
-        "list": "c",
-        "system_error": "c",
-        "xlocale": "c",
-        "gui_scr_mgr.h": "c"
+        "lvgl_app.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

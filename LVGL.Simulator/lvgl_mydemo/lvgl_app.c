@@ -8,12 +8,11 @@
  * Github       : https://github.com/ShallowGreen123/lvgl_mydemo
  ************************************************************************/
 
-#define __LVGL_APP_C__
-
 /*********************************************************************************
  *                                  INCLUDES
  * *******************************************************************************/
 #include "lvgl_app.h"
+#include "data/gui_scr_mgr.h"
 
 /*********************************************************************************
  *                                   DEFINES
@@ -30,31 +29,44 @@
 /*********************************************************************************
  *                              STATIC FUNCTION
  * *******************************************************************************/
-
-static void lv_app_test_timer_cb(lv_timer_t *t)
+static void log_write_timer_cb(lv_timer_t *t)
 {
     LV_UNUSED(t);
-    static uint8_t bat     = 0;
-    static uint8_t bt_st   = 0;
-    static uint8_t usb_st  = 0;
-    static uint8_t wifi_st = 0;
 
-    DataModelSetU8(DATA_BATTERY_VAL, bat);
+    Lib_LogLoop();
+}
 
-    DataModelSetU8(DATA_BLUETOOTH_ST, bt_st);
+void log_create_event_cb(lv_timer_t *t)
+{
+    LV_UNUSED(t);
+    uint32_t i;
+    uint32_t rand     = lv_rand(3, 100);
+    uint8_t  buf[102] = {0};
 
-    DataModelSetU8(DATA_USB_INSERT_ST, usb_st);
-
-    DataModelSetU8(DATA_WIFI_ST, wifi_st);
-
-    bat += 5;
-    bt_st   = !bt_st;
-    usb_st  = !usb_st;
-    wifi_st = !wifi_st;
-
-    if (bat > 100) {
-        bat = 0;
+    for (i = 0; i < rand; i++) {
+        buf[i] = '*';
     }
+    buf[i + 1] = '\0';
+
+    TRACE_I("%s\n", buf);          // 随机添加长度为(3-100)的日志
+}
+
+static bool log_write_to_file(LIB_LOG_ITEM_T *item)          // 日志写回调函数
+{
+    // erroe rate = 134 / 80244 : 0.0016699067843079
+    /**
+     * 测试结果，向日志系统中写入了80244条日志，
+     * 无效的日志为134条，日志无效概率为：
+     *              0.167%
+     */
+    static uint32_t t   = 0;
+    static uint32_t err = 0;          //记录日志写回调函数中无效日志的个数
+    uint32_t        len = strlen(item->Buf);
+    if (len == 0) {
+        err++;
+    }
+    printf("File[%d] e=%d %s\n", t++, err, item->Buf);
+    return true;
 }
 
 /*********************************************************************************
@@ -63,27 +75,17 @@ static void lv_app_test_timer_cb(lv_timer_t *t)
 
 void lvgl_app_init(void)
 {
-    // Lib_LogInit();
-    // Lib_LogRegistWriter(log_write_to_file);          // 模拟写日志到文件
+    Lib_LogInit();
+
+    Lib_LogRegistWriter(log_write_to_file);          // 模拟写日志到文件
 
     DataModelInit();
 
     ScrMgrInit();
     ScrMgrSwitchScr(GUI_MIAN_SCR_ID, true);
 
-    // TODO 上电加载data model map的数据，掉电保存data model map数据到flash
-
     TRACE_W("Hello wrold!");
 
-    lv_timer_create(lv_app_test_timer_cb, 1000, NULL);
-}
-
-void lvgl_app_remove_all_event(lv_obj_t *obj, lv_event_cb_t event_cb)
-{
-    while (lv_obj_remove_event_cb(obj, event_cb)) {}
-}
-
-void lvgl_app_shutdown(void)
-{
-    printf("shutdown\n");
+    lv_timer_create(log_write_timer_cb, 50, NULL);
+    lv_timer_create(log_create_event_cb, 100, NULL);
 }
