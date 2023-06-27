@@ -1,10 +1,10 @@
-﻿/************************************************************************
+/************************************************************************ 
  * FilePath     : dataModel.h
  * Author       : GX.Duan
  * Date         : 2022-08-18
  * LastEditTime : 2022-08-19
  * LastEditors  : ShallowGreen123 2608653986@qq.com
- * Copyright (c): by GX.Duan, All Rights Reserved.
+ * Copyright (c): by GX.Duan, All Rights Reserved. 
  * Github       : https://github.com/ShallowGreen123/lvgl_mydemo
  ************************************************************************/
 #ifndef __DATA_MODEL__
@@ -13,15 +13,14 @@
 /*********************************************************************************
  *                                  INCLUDES
  * *******************************************************************************/
-#include <stdint.h>
-#include "../lvgl_app.h"
+
 /*********************************************************************************
  *                                   DEFINES
  * *******************************************************************************/
 #ifdef __DATA_MODEL_C__
-#    define DEF_DATA_EXTERN
+#define DEF_EXTERN
 #else
-#    define DEF_DATA_EXTERN extern
+#define DEF_EXTERN extern
 #endif
 
 /*********************************************************************************
@@ -41,6 +40,19 @@ typedef signed short       s16;
 typedef signed int         s32;
 typedef signed long long   s64;
 
+typedef enum data_model_id_e {
+    DATA_MODEL_ID_0 = 0,
+    DATA_MODEL_ID_1,
+    DATA_MODEL_ID_2,
+    DATA_MODEL_ID_3,
+    DATA_MODEL_ID_4,
+    DATA_MODEL_ID_5,
+    DATA_MODEL_ID_6,
+    DATA_MODEL_ID_7,
+    DATA_MODEL_ID_8,
+    DATA_MODEL_ID_MAX,
+} DATA_MODEL_ID_E;
+
 typedef enum data_model_err_e {
     DATA_MODEL_OK = 0,
     DATA_MODEL_ERR_EXIT,
@@ -49,7 +61,7 @@ typedef enum data_model_err_e {
     DATA_MODEL_ERR_FULL_LIST,
 } DATA_MODEL_ERR_E;
 
-typedef void (*DataModelListener)(uint32_t id);
+typedef void (*DataModelListener)(DATA_MODEL_ID_E id);
 
 typedef struct c_generic_type_s {
     void *data;
@@ -61,34 +73,34 @@ typedef struct c_generic_type_s {
  *                              GLOBAL PROTOTYPES
  * *******************************************************************************/
 /*** DataModelInit ***/
-DEF_DATA_EXTERN void DataModelInit();
-DEF_DATA_EXTERN int  DataModelRegister(DataModelListener listener);
-DEF_DATA_EXTERN int  DataModelRemove(DataModelListener listener);
+DEF_EXTERN void DataModelInit();
+DEF_EXTERN int  DataModelRegister(DataModelListener listener);
+DEF_EXTERN int  DataModelRemove(DataModelListener listener);
 /*** 8 ***/
-DEF_DATA_EXTERN int DataModelSetU8(uint32_t id, u8 val);
-DEF_DATA_EXTERN int DataModelGetU8(uint32_t id, u8 *val);
-DEF_DATA_EXTERN int DataModelSetS8(uint32_t id, s8 val);
-DEF_DATA_EXTERN int DataModelGetS8(uint32_t id, s8 *val);
+DEF_EXTERN int DataModelSetU8(DATA_MODEL_ID_E id, u8 val);
+DEF_EXTERN int DataModelGetU8(DATA_MODEL_ID_E id, u8 *val);
+DEF_EXTERN int DataModelSetS8(DATA_MODEL_ID_E id, s8 val);
+DEF_EXTERN int DataModelGetS8(DATA_MODEL_ID_E id, s8 *val);
 /*** 16 ***/
-DEF_DATA_EXTERN int DataModelSetU16(uint32_t id, u16 val);
-DEF_DATA_EXTERN int DataModelGetU16(uint32_t id, u16 *val);
-DEF_DATA_EXTERN int DataModelSetS16(uint32_t id, s16 val);
-DEF_DATA_EXTERN int DataModelGetS16(uint32_t id, s16 *val);
+DEF_EXTERN int DataModelSetU16(DATA_MODEL_ID_E id, u16 val);
+DEF_EXTERN int DataModelGetU16(DATA_MODEL_ID_E id, u16 *val);
+DEF_EXTERN int DataModelSetS16(DATA_MODEL_ID_E id, s16 val);
+DEF_EXTERN int DataModelGetS16(DATA_MODEL_ID_E id, s16 *val);
 /*** 32 ***/
-DEF_DATA_EXTERN int DataModelSetU32(uint32_t id, u32 val);
-DEF_DATA_EXTERN int DataModelGetU32(uint32_t id, u32 *val);
-DEF_DATA_EXTERN int DataModelSetS32(uint32_t id, s32 val);
-DEF_DATA_EXTERN int DataModelGetS32(uint32_t id, s32 *val);
+DEF_EXTERN int DataModelSetU32(DATA_MODEL_ID_E id, u32 val);
+DEF_EXTERN int DataModelGetU32(DATA_MODEL_ID_E id, u32 *val);
+DEF_EXTERN int DataModelSetS32(DATA_MODEL_ID_E id, s32 val);
+DEF_EXTERN int DataModelGetS32(DATA_MODEL_ID_E id, s32 *val);
 /*** 64 ***/
-DEF_DATA_EXTERN int DataModelSetU64(uint32_t id, u64 val);
-DEF_DATA_EXTERN int DataModelGetU64(uint32_t id, u64 *val);
-DEF_DATA_EXTERN int DataModelSetS64(uint32_t id, s64 val);
-DEF_DATA_EXTERN int DataModelGetS64(uint32_t id, s64 *val);
+DEF_EXTERN int DataModelSetU64(DATA_MODEL_ID_E id, u64 val);
+DEF_EXTERN int DataModelGetU64(DATA_MODEL_ID_E id, u64 *val);
+DEF_EXTERN int DataModelSetS64(DATA_MODEL_ID_E id, s64 val);
+DEF_EXTERN int DataModelGetS64(DATA_MODEL_ID_E id, s64 *val);
 /*** Array ***/
-DEF_DATA_EXTERN int DataModelSetArray(uint32_t id, void *arr, u32 len);
-DEF_DATA_EXTERN int DataModelGetArray(uint32_t id, void **arr, u32 *len);
+DEF_EXTERN int DataModelSetArray(DATA_MODEL_ID_E id, void *arr, u32 len);
+DEF_EXTERN int DataModelGetArray(DATA_MODEL_ID_E id, void **arr, u32 *len);
 /*** string ***/
-DEF_DATA_EXTERN int DataModelSetString(uint32_t id, void *str);
-DEF_DATA_EXTERN int DataModelGetString(uint32_t id, void **str);
+DEF_EXTERN int DataModelSetString(DATA_MODEL_ID_E id, void *str);
+DEF_EXTERN int DataModelGetString(DATA_MODEL_ID_E id, void **str);
 
 #endif
